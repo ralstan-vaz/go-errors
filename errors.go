@@ -79,6 +79,17 @@ const (
 	Unknown               = "Unknown"
 )
 
+// Get return the corresponding error struct
+// If the error is not of the custom struct it will return InternalError kind by default
+func Get(err error) *Error {
+	switch t := err.(type) {
+	case getter:
+		return t.Get()
+	}
+
+	return NewInternalError(err)
+}
+
 // New creates an instance of an error
 func New(err Error) *Error {
 	return newError(err.Kind, err.Description, err.Code, err.Message)
@@ -115,8 +126,10 @@ func NewParameterMissing(description string) *Error {
 }
 
 // NewInternalError creates an instance of an InternalError error
-func NewInternalError(description string) *Error {
-	return newError(InternalError, description, "", "")
+func NewInternalError(err error) *Error {
+	internalErr := newError(InternalError, err.Error(), "", "")
+	internalErr.Wrap(err)
+	return internalErr
 }
 
 // Error validations

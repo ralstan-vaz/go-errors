@@ -10,7 +10,7 @@ type getter interface {
 	Get() *errors.Error
 }
 
-// StatusCode Check if its a custome error type and then
+// StatusCode Check if its a custom error type and then
 // gets the corresponding status code from the error kind.
 // Returns InternalServerError by default
 func StatusCode(err error) int {

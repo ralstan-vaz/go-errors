@@ -26,6 +26,8 @@ func main() {
 
 	fmt.Println(http.StatusCode(err))
 
+	fmt.Println(errors.Get(err))
+
 }
 
 func getUsers() error {
