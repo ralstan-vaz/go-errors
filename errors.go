@@ -50,6 +50,7 @@ func (e *Error) Get() *Error {
 	return e
 }
 
+// Error return the error in the form of Kind and description
 func (e *Error) Error() string {
 	return fmt.Sprintf("%s: %s", e.Kind, e.Description)
 }
