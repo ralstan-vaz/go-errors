@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/ralstan-vaz/go-errors"
+	"github.com/ralstan-vaz/go-errors/grpc"
 	"github.com/ralstan-vaz/go-errors/http"
 )
 
@@ -24,7 +25,8 @@ func main() {
 
 	fmt.Println(errors.IsUnauthorized(err))
 
-	fmt.Println(http.StatusCode(err))
+	fmt.Println("HTTP: ", http.StatusCode(err))
+	fmt.Println("GRPC: ", grpc.StatusCode(err))
 
 	fmt.Println(errors.Get(err))
 
