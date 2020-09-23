@@ -34,7 +34,7 @@ func main() {
 
 func getUsers() error {
 	srcErr := errors.New(UserNotFound)
-	err := errors.NewNotFound("Item was not found").Wrap(srcErr)
+	err := errors.NewNotFound("Item was not found").SetCode("USER_NOT_FOUND").Wrap(srcErr)
 	fmt.Printf("%+v\n", err)
 	// return errors.NewUnauthorized("Item")
 	return err
